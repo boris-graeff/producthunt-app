@@ -1,9 +1,15 @@
 <template>
   <div>
-    <h1>ProductHunt</h1>
-    <pre>
-      {{ posts }}
-    </pre>
+    <header>
+      <h1>ProductHunt</h1>
+      <h2>The best new product, every day</h2>
+    </header>
+
+    <ul>
+      <li v-for="post in posts" :key="post.id">
+          {{ post.name }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -30,3 +36,21 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+  @import '~@/style/vars';
+
+  h1 {
+    font-size: 40px;
+    color: $primary-color;
+  }
+
+  h2 {
+    font-size: 20px;
+    color: $secondary-color;
+  }
+
+  header {
+    text-align: center;
+  }
+</style>

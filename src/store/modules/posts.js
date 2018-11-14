@@ -1,4 +1,4 @@
-import { getPosts } from '@/api/producthunter'
+import { getPosts } from '@/api/producthunt'
 
 const SET_POSTS = 'SET_POSTS'
 
