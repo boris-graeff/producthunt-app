@@ -1,3 +1,4 @@
+import { uniqBy } from 'lodash';
 import { getPosts } from '@/api/producthunt'
 
 const SET_POSTS = 'SET_POSTS'
@@ -19,5 +20,19 @@ export default {
       const response = await getPosts()
       commit(SET_POSTS, response.data.posts)
     }
+  },
+
+  getters: {
+    nbOfPosts: ({ posts }) => posts.length,
+
+    nbOfVotes: ({ posts }) => posts.reduce((res, post) => post.votes_count + res, 0),
+
+    nbOfComments: ({ posts }) => posts.reduce((res, post) => post.comments_count + res, 0),
+
+    nbOfMakers: ({ posts }) => {
+      const makers = posts.reduce((res, post) => [...res, ...post.makers], [])
+      return uniqBy(makers, 'id').length
+    }
   }
+
 }

@@ -3,6 +3,7 @@
     <header>
       <h1>ProductHunt</h1>
       <h2>The best new product, every day</h2>
+      <activity-overview />
     </header>
 
     <ul class="grids">
@@ -16,6 +17,7 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import PostPreview from './home/PostPreview'
+import ActivityOverview from './home/ActivityOverview'
 
 export default {
   async mounted () {
@@ -36,6 +38,7 @@ export default {
     })
   },
   components: {
+    ActivityOverview,
     PostPreview
   }
 }
