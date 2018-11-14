@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div class="home">
     <header>
       <h1>ProductHunt</h1>
       <h2>The best new product, every day</h2>
     </header>
 
-    <ul>
+    <ul class="grids">
       <li v-for="post in posts" :key="post.id">
-          {{ post.name }}
+        <post-preview :post="post" />
       </li>
     </ul>
   </div>
@@ -15,6 +15,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import PostPreview from './home/PostPreview'
 
 export default {
   async mounted () {
@@ -33,12 +34,19 @@ export default {
     ...mapActions('posts', {
       getPosts: 'getPosts'
     })
+  },
+  components: {
+    PostPreview
   }
 }
 </script>
 
 <style scoped lang="scss">
   @import '~@/style/vars';
+
+  .home {
+    padding: 6 * $space 0;
+  }
 
   h1 {
     font-size: 40px;
@@ -52,5 +60,17 @@ export default {
 
   header {
     text-align: center;
+  }
+
+  .grids {
+    display: flex;
+    flex-wrap: wrap;
+    padding : 0 $space;
+
+    > li {
+      width: 33%;
+      padding: $space;
+      display: flex;
+    }
   }
 </style>
