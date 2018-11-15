@@ -93,4 +93,16 @@ export default {
       display: flex;
     }
   }
+
+  @media screen and (max-width: 900px) {
+    .grids > li {
+      width: 50%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .grids > li {
+      width: 100%;
+    }
+  }
 </style>
