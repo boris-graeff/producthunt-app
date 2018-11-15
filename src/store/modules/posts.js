@@ -16,8 +16,8 @@ export default {
   },
 
   actions: {
-    async getPosts ({ commit }) {
-      const response = await getPosts()
+    async getPosts ({ commit }, date) {
+      const response = await getPosts(date)
       commit(SET_POSTS, response.data.posts)
     }
   },

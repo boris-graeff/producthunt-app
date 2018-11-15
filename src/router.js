@@ -15,7 +15,8 @@ export default new Router({
     {
       path: '*',
       redirect: {
-        name: 'posts'
+        name: 'posts',
+        params: {}
       }
     }
   ]

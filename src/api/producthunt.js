@@ -9,4 +9,4 @@ const client = axios.create({
   }
 })
 
-export const getPosts = () => client.get(`/posts`)
+export const getPosts = day => client.get(`/posts?day=${day}`)

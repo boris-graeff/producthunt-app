@@ -3,6 +3,9 @@
     <header>
       <h1>ProductHunt</h1>
       <h2>The best new product, every day</h2>
+
+      <date-select :value='date || $options.today' @change="onDateChange"/>
+
       <activity-overview />
     </header>
 
@@ -15,17 +18,19 @@
 </template>
 
 <script>
+import { format } from 'date-fns'
 import { mapActions, mapState } from 'vuex'
 import PostPreview from './posts/PostPreview'
 import ActivityOverview from './posts/ActivityOverview'
+import DateSelect from './posts/DateSelect'
+
+const today = format(new Date(), 'YYYY-MM-DD')
 
 export default {
+  today,
+  props: ['date'],
   async mounted () {
-    try {
-      await this.getPosts()
-    } catch (e) {
-      // Should display error message
-    }
+    this.fetchPosts(this.date || today)
   },
   computed: {
     ...mapState('posts', {
@@ -33,13 +38,25 @@ export default {
     })
   },
   methods: {
+    async fetchPosts (date) {
+      try {
+        await this.getPosts(date)
+      } catch (e) {
+        // Should display error message
+      }
+    },
+    onDateChange (date) {
+      this.$router.push({ name: 'posts', params: { date } })
+      this.fetchPosts(date)
+    },
     ...mapActions('posts', {
       getPosts: 'getPosts'
     })
   },
   components: {
     ActivityOverview,
-    PostPreview
+    PostPreview,
+    DateSelect
   }
 }
 </script>
