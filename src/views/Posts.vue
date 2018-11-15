@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="posts">
     <header>
       <h1>ProductHunt</h1>
       <h2>The best new product, every day</h2>
@@ -16,8 +16,8 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import PostPreview from './home/PostPreview'
-import ActivityOverview from './home/ActivityOverview'
+import PostPreview from './posts/PostPreview'
+import ActivityOverview from './posts/ActivityOverview'
 
 export default {
   async mounted () {
@@ -47,7 +47,7 @@ export default {
 <style scoped lang="scss">
   @import '~@/style/vars';
 
-  .home {
+  .posts {
     padding: 6 * $space 0;
   }
 
